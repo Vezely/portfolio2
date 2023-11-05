@@ -1,0 +1,81 @@
+/* .layout[data-theme='Lumière'] {
+	--CouleurFond: #eff0f7;
+	--CouleurFondPrincipale: #eceff4;
+	--CouleurFondNav2: #f4f4f4;
+	--CouleurFondNav: #ffffff;
+	--CouleurBC_Deal: #ecf1fe;
+	--CouleurBC_Menu: #ecf1fe;
+	--CouleurTexte: #535252;
+	--CouleurTexteLien: #9ca3af;
+	--CouleurTexteLien2: #686868;
+	--CouleurTexteLienSurvol: #c4a461;
+	--CouleurTexteInverse: #f0f0f0;
+	--CouleurBordure: #e5e7eb;
+	--CouleurIcon: #717377;
+
+	--CouleurBox: #ffffff;
+	--CouleurFooter: #002788;
+	--CouleurH: #002a5b;
+	--CouleurBouton: #ff0000;
+	--CouleurSurvol: #8e76f0;
+	--CouleurSurvolTransparant: #ffffffc6;
+	--CouleurNB: #212529;
+	--fleche: #e7e7e7;
+	--CouleurLien: #4f8afe;
+	--FondLinearNoir: #071016;
+	--FondLinearBleuClair: #0d2940;
+	--CouleurAccent: #3091f9;
+} */
+
+.layout[data-theme='Sombre'] {
+	--CouleurFondHeader: #000000;
+	--CouleurTexteBlanc: #f0eded;
+	--CouleurIcon: #f8f9fa;
+	--CouleurFondBlanc: #ffffff;
+	--CouleurFond2: #f3f3f3;
+	--CouleurStyleRouge: #ed395a;
+	--CouleurValider: #1ab052;
+	--CouleurTexteBlanc2: #a5a5a5;
+	--CouleurTexteJaune: #f1c81a;
+	--CouleurTexteNoir: #000000;
+	--CouleurButton: #1ab052;
+	--CouleurButtonBleu: #849be5;
+	--CouleurButtonBleuFonce: #325ad2;
+	--CouleurFondNav2: #1d1e2e;
+	--CouleurBC1: #1b1d20;
+	--CouleurBC2: #212529;
+	--CouleurBC_Footer: #0c0c0c;
+}
+.layout {
+	background-color: #212529;
+	position: relative;
+}
+.btnToggle {
+	position: fixed;
+	top: 65px;
+	right: 15px;
+	/* width: 24px;
+	height: 24px; */
+	cursor: pointer;
+	transition: all 0.2s;
+}
+.btnToggle:active {
+	transition: all 0.2s;
+	transform: scale(0.9);
+}
+.btnToggle span {
+	position: absolute;
+	right: -2.5px;
+	top: -15px;
+	padding: 2px 5px;
+	background-color: var(--CouleurSurvol);
+	color: #fff;
+	font-size: 0.6em;
+	width: 110px;
+	text-align: center;
+}
+.btnToggle svg {
+	fill: var(--CouleurTexteLienSurvol);
+	width: 20px;
+	height: 20px;
+}

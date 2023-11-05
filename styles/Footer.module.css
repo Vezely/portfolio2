@@ -1,0 +1,132 @@
+.container {
+	background-color: var(--CouleurBC_Footer);
+	display: flex;
+	align-items: center;
+	/* justify-content: space-between; */
+	color: var(--CouleurTexteBlanc);
+	padding: 2rem;
+	min-height: 9rem;
+	position: relative;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 5;
+}
+.footer {
+	max-width: 1500px;
+	margin: 0 auto;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 100%;
+}
+.container a {
+	color: var(--CouleurTexteBlanc);
+	text-decoration: none;
+}
+.container .containerIvcon svg {
+	fill: var(--CouleurTexteBlanc);
+	width: 25px;
+}
+.container .containerIvcon svg:hover,
+.container a:hover {
+	color: var(--CouleurTexteBlanc2);
+	fill: var(--CouleurTexteBlanc2);
+	opacity: 0.8;
+	transition: ease-in 0.1s;
+}
+.container .email {
+	font-family: Open Sans, sans-serif;
+	font-size: 1rem;
+	letter-spacing: 0.0625rem;
+	padding-bottom: 5px;
+	position: relative;
+}
+.container .email::before {
+	content: '';
+	width: 100%;
+	height: 1.5px;
+	background-image: linear-gradient(270deg, #ee3a5b, #fcd405);
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+.container .gauche,
+.container .droite {
+	width: 50%;
+}
+.container .droite {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 30px;
+}
+.container .gauche {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+.container .droite .containerIvcon {
+	display: flex;
+	gap: 15px;
+	font-size: 0;
+}
+.container .gauche span {
+	letter-spacing: 0.125rem;
+	text-transform: uppercase;
+	border-left: 0.0625rem solid #a5a5a5;
+	padding-left: 10px;
+	color: #a5a5a5;
+	/* padding-left: 1.25rem; */
+	font-family: Open Sans, sans-serif;
+	font-size: 0.75rem;
+}
+.container .gauche a {
+	width: 60px;
+	height: 3rem;
+	display: flex;
+	align-items: center;
+	font-size: 25px;
+	font-family: 'Bad Script', cursive;
+	background-clip: text;
+	color: transparent;
+	background-image: linear-gradient(90deg, #fcd405, #ee3a5b);
+}
+
+.container .gauche a img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+.container .gauche svg {
+	/* transform: scale(0.5); */
+	width: 8rem;
+}
+@media (max-width: 900px) {
+	.footer {
+		flex-direction: column-reverse;
+		justify-content: center;
+	}
+	.container .gauche,
+	.container .droite {
+		width: 100%;
+		justify-content: center;
+	}
+	.container .droite {
+		flex-direction: column;
+	}
+}
+@media (max-width: 500px) {
+	.container .gauche span {
+		font-size: 0.4rem;
+		transition: all 0.4s;
+	}
+	.container .droite .email {
+		font-size: 0.7rem;
+		transition: all 0.4s;
+	}
+	.container .gauche svg {
+		width: 5rem;
+	}
+}
