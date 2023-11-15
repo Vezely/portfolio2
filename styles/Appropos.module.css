@@ -1,6 +1,7 @@
 .contenu {
 	background-color: var(--CouleurBC2);
 	width: 100%;
+	overflow: hidden;
 }
 .container {
 	display: flex;

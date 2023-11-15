@@ -27,7 +27,14 @@ const Blogs = () => {
 
 	return (
 		<>
-			{isBlog && <h2 style={{ textShadow: '2px 2px 4px #000' }}>Blogs</h2>}
+			{isBlog && (
+				<h2
+					style={{
+						textShadow: '2px 2px 4px #000',
+					}}>
+					Blogs
+				</h2>
+			)}
 
 			<div className={`${isBlog ? styles.contenu2 : styles.contenu}`}>
 				<div className={styles.blogsContainer} style={{ width: isBlog && 'max-content' }}>

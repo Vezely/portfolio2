@@ -1,13 +1,54 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styles from '../styles/Profils.module.css';
 import Image from 'next/image';
 
 const Profils = () => {
+	const imageRefs = useRef([]);
+
+	// console.log('UUID généré :', uuid);
+	useEffect(() => {
+		const options = {
+			threshold: 0.5, // Pourcentage de visibilité nécessaire pour déclencher l'effet (50% ici)
+		};
+		// Créez une instance de l'observateur d'intersection
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					// L'élément est visible à l'écran, augmentez l'opacité avec une transition
+					entry.target.style.opacity = 1;
+					entry.target.style.transition = 'ease-in 0.5s'; // Ajout de la transition
+					entry.target.style.transform = 'scale(1)';
+
+					// Arrêtez d'observer cet élément une fois que l'opacité a été ajustée
+					// observer.unobserve(entry.target);
+				} else {
+					// L'élément n'est plus visible à l'écran, réinitialisez les styles
+					entry.target.style.opacity = 0;
+					entry.target.style.transition = 'ease-out 0.8s'; // Supprimez la transition
+					entry.target.style.transform = 'scale(0.8)';
+				}
+			});
+		}, options);
+		// Parcourez toutes les références d'images et observez-les
+		imageRefs.current.forEach((imageRef) => {
+			observer.observe(imageRef);
+		});
+
+		// N'oubliez pas de nettoyer l'observateur lorsque le composant est démonté
+		return () => {
+			observer.disconnect();
+		};
+	}, []);
 	return (
 		<div className={styles.contenu}>
 			<div className={styles.container}>
 				<div className={styles.boxImage}>
-					<svg viewBox='0 0 20 20' fill='#000000'>
+					<svg
+						ref={(el) => {
+							imageRefs.current[1] = el;
+						}}
+						viewBox='0 0 20 20'
+						fill='#000000'>
 						<g id='SVGRepo_iconCarrier'>
 							<g id='Page-1' stroke='none' strokeWidth='1' fillRule='evenodd'>
 								<g id='Dribbble-Light-Preview' transform='translate(-140.000000, -7559.000000)'>
@@ -22,7 +63,12 @@ const Profils = () => {
 					</svg>
 				</div>
 				<div className={styles.boxImage}>
-					<svg fill='#000000' viewBox='0 0 32 32'>
+					<svg
+						ref={(el) => {
+							imageRefs.current[2] = el;
+						}}
+						fill='#000000'
+						viewBox='0 0 32 32'>
 						<g id='SVGRepo_bgCarrier' strokeWidth='0'></g>
 						<g id='SVGRepo_tracerCarrier' strokeLinecap='round' strokeLinejoin='round'></g>
 						<g id='SVGRepo_iconCarrier'>
@@ -32,7 +78,11 @@ const Profils = () => {
 					</svg>
 				</div>
 				<div className={styles.boxImage}>
-					<svg viewBox='0 0 32 32'>
+					<svg
+						ref={(el) => {
+							imageRefs.current[3] = el;
+						}}
+						viewBox='0 0 32 32'>
 						<g id='SVGRepo_bgCarrier' strokeWidth='0'></g>
 						<g id='SVGRepo_tracerCarrier' strokeLinecap='round' strokeLinejoin='round'></g>
 						<g id='SVGRepo_iconCarrier'>
@@ -50,7 +100,11 @@ const Profils = () => {
 					</svg>
 				</div>
 				<div className={styles.boxImage}>
-					<svg viewBox='0 0 32 32'>
+					<svg
+						ref={(el) => {
+							imageRefs.current[4] = el;
+						}}
+						viewBox='0 0 32 32'>
 						<g id='SVGRepo_iconCarrier'>
 							<path
 								d='M16 16C16 13.7909 17.7909 12 20 12C22.2091 12 24 13.7909 24 16C24 18.2091 22.2091 20 20 20C17.7909 20 16 18.2091 16 16Z'
@@ -63,7 +117,12 @@ const Profils = () => {
 					</svg>
 				</div>
 				<div className={styles.boxImage}>
-					<svg viewBox='0 123.30600000000001 595.279 595.279' fill='#000000'>
+					<svg
+						ref={(el) => {
+							imageRefs.current[5] = el;
+						}}
+						viewBox='0 123.30600000000001 595.279 595.279'
+						fill='#000000'>
 						<g id='SVGRepo_iconCarrier'>
 							<radialGradient
 								id='a'
@@ -82,7 +141,12 @@ const Profils = () => {
 					</svg>
 				</div>
 				<div className={styles.boxImage}>
-					<svg viewBox='0 123.30600000000001 595.279 595.279' fill='#000000'>
+					<svg
+						ref={(el) => {
+							imageRefs.current[6] = el;
+						}}
+						viewBox='0 123.30600000000001 595.279 595.279'
+						fill='#000000'>
 						<g id='SVGRepo_iconCarrier'>
 							<radialGradient
 								id='a'
@@ -96,6 +160,16 @@ const Profils = () => {
 								d='M24.803 155.549h545.674v530.792H24.803V155.549zM0 711.145h595.28V130.746H0v580.399zm389.908-373.539c0-1.984.744-2.977 2.977-2.977h38.941c1.983 0 2.976.744 2.976 2.977v195.699c0 1.983-.496 2.976-2.976 2.976h-38.445c-2.48 0-3.225-1.24-3.225-3.224V337.606h-.248zm-2.728-56.304c0-15.874 11.161-25.299 25.3-25.299 15.13 0 25.299 10.169 25.299 25.299 0 16.37-10.665 25.299-25.795 25.299-14.387.001-24.804-8.929-24.804-25.299zM275.565 419.209c-6.944-27.532-23.314-87.556-29.516-116.576h-.496c-5.209 29.02-18.354 78.13-28.771 116.576h58.783zm-68.953 40.182l-19.595 74.41c-.496 1.983-1.24 2.479-3.72 2.479h-36.461c-2.48 0-2.977-.744-2.48-3.72l70.441-246.546c1.24-4.464 1.984-8.433 2.48-20.586 0-1.736.744-2.48 1.984-2.48h52.087c1.736 0 2.48.496 2.977 2.48l78.874 267.628c.496 1.983 0 3.224-1.984 3.224h-41.174c-1.984 0-3.225-.496-3.72-2.231l-20.339-74.658h-79.37z'
 								fill='#ff7f18'></path>
 						</g>
+					</svg>
+				</div>
+				<div className={styles.boxImage}>
+					<svg
+						ref={(el) => {
+							imageRefs.current[7] = el;
+						}}
+						fill='currentColor'
+						viewBox='0 0 24 24'>
+						<path d='m12 2.25 11.25 19.5H.75L12 2.25Z'></path>
 					</svg>
 				</div>
 			</div>

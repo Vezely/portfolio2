@@ -11,6 +11,74 @@
 	justify-content: center;
 	align-items: center;
 }
+.contenuBlog h2 {
+	text-transform: uppercase;
+	text-align: start;
+	width: 100%;
+	font-size: 2.5rem;
+	line-height: 1.2;
+	padding: 0 1.5rem;
+	margin: 2rem 0 0 0;
+	color: var(--CouleurTexteBlanc);
+	max-width: 1500px;
+	/* margin: 5rem auto; */
+	margin-bottom: 2rem;
+}
+
+.swicheContainer {
+	z-index: 60;
+	position: fixed;
+	right: 2%;
+	top: 95vh;
+	font-size: 0.7em;
+	letter-spacing: 0.125rem;
+	white-space: nowrap;
+	cursor: pointer;
+	color: var(--CouleurTexteBlanc);
+	text-transform: uppercase;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1px;
+	transition: width 0.5s;
+	height: 2rem;
+	user-select: none;
+}
+.swicheContainer span {
+	padding: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: all 0.3s;
+	background-color: var(--CouleurButtonBleuFonce);
+}
+.swicheContainer > span:last-child {
+	height: 32px;
+}
+.swicheContainer span:first-child svg {
+	max-width: 15px;
+	min-width: 15px;
+}
+.swicheContainer span:first-child {
+	height: 100%;
+}
+.swicheContainer svg {
+	min-width: 25px;
+	max-width: 25px;
+}
+.swicheContainer span:last-child:hover {
+	opacity: 0.9;
+}
+.swicheContainer span:first-child:hover svg {
+	transform: scale(1.4);
+	transition: all 0.3s;
+}
+.swicheContainer span:first-child:hover {
+	opacity: 0.9;
+}
+.swicheContainer:active {
+	transform: scale(0.97);
+}
 .container > h2 {
 	text-transform: uppercase;
 	text-align: start;

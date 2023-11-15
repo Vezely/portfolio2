@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from '../styles/Commentaire.module.css';
 import { useForm } from 'react-hook-form';
 import Spinner from './Spinner';
+import CartCommentaire from './CartCommentaire';
 
 const Commentaire = () => {
 	const [activerForm, setActiverForm] = useState(false);
@@ -55,45 +56,8 @@ const Commentaire = () => {
 		<div className={styles.container}>
 			<h3>Merci pour vos commentaires 🫶</h3>
 
-			{commentaire.length > 0 && (
-				<div className={styles.container_commentaire}>
-					<>
-						{commentaire.slice(0, commentaire.length / 2).map((comment, index) => (
-							<div className={styles.box} key={index}>
-								<div>
-									<div className={styles.nom_commentataire}>{comment.nom_commentateur}</div>
-									<div className={styles.date_ajout}>{new Date(comment.date_commentaire).toLocaleDateString('fr-FR')}</div>
-								</div>
-								<p>{comment.commentaire}</p>
-							</div>
-						))}
-					</>
-				</div>
-			)}
-			<div className={styles.container_commentaire}>
-				{Array.isArray(commentaire) && (
-					<>
-						{commentaire.slice(commentaire.length / 2, commentaire.length).map((comment, index) => (
-							<div className={styles.box} key={index}>
-								<div>
-									<div className={styles.nom_commentataire}>{comment.nom_commentateur}</div>
-									<div className={styles.date_ajout}>{new Date(comment.date_commentaire).toLocaleDateString('fr-FR')}</div>
-								</div>
-								<p>{comment.commentaire}</p>
-							</div>
-						))}
-						{commentaireRecent && (
-							<div className={styles.box}>
-								<div>
-									<div className={styles.nom_commentataire}>{commentaireRecent.nom_commentateur}</div>
-									<div className={styles.date_ajout}>{new Date().toLocaleDateString('fr-FR')}</div>
-								</div>
-								<p>{commentaireRecent.commentaire}</p>
-							</div>
-						)}
-					</>
-				)}
-			</div>
+			{commentaire.length > 0 && <CartCommentaire commentaire={commentaire} commentaireRecent={commentaireRecent} />}
+
 			<svg
 				className={styles.chater}
 				onClick={toggleForm}

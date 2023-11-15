@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import styles from '../styles/Blogs.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -19,9 +19,47 @@ const BlogCart = ({ blog }) => {
 		}
 		return texte?.substring(0, limite) + '...';
 	}
+	const imageRefs = useRef([]);
+	useEffect(() => {
+		const options = {
+			threshold: 0.5, // Pourcentage de visibilité nécessaire pour déclencher l'effet (50% ici)
+		};
+		// Créez une instance de l'observateur d'intersection
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					// L'élément est visible à l'écran, augmentez l'opacité avec une transition
+					entry.target.style.opacity = 1;
+					entry.target.style.transition = 'ease-in 0.5s'; // Ajout de la transition
+					entry.target.style.transform = 'scale(1)';
+
+					// Arrêtez d'observer cet élément une fois que l'opacité a été ajustée
+					// observer.unobserve(entry.target);
+				} else {
+					// L'élément n'est plus visible à l'écran, réinitialisez les styles
+					entry.target.style.opacity = 0;
+					entry.target.style.transition = 'ease-out 0.8s'; // Supprimez la transition
+					entry.target.style.transform = 'scale(0.8)';
+				}
+			});
+		}, options);
+		// Parcourez toutes les références d'images et observez-les
+		imageRefs.current.forEach((imageRef) => {
+			observer.observe(imageRef);
+		});
+
+		// N'oubliez pas de nettoyer l'observateur lorsque le composant est démonté
+		return () => {
+			observer.disconnect();
+		};
+	}, []);
 	return (
 		<>
-			<div className={styles.blog}>
+			<div
+				ref={(el) => {
+					imageRefs.current[blog.id_blog] = el;
+				}}
+				className={styles.blog}>
 				{blog.image_url ? (
 					<div className={styles.photo}>
 						<Image property='true' src={blog.image_url} width={blog.width} height={blog.height} alt='image blog' />

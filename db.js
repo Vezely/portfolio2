@@ -2,10 +2,10 @@ import mysql from 'mysql';
 
 // Configurer les informations de connexion
 const connection = mysql.createConnection({
-	host: 'localhost',
+	host: process.env.HOST,
 	user: 'root',
-	password: 'gestion_ecole2023',
-	database: 'portfolio',
+	password: process.env.PASSWORD,
+	database: process.env.DB_NAME,
 });
 
 // Fonction pour exécuter une requête à la base de données

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styles from '../styles/Appropos.module.css';
 import Image from 'next/image';
 import { useTransition, animated } from 'react-spring';
@@ -65,11 +65,94 @@ const Appros = () => {
 		setCurrentImage(index);
 	};
 
+	const imageRefs = useRef([]);
+
+	useEffect(() => {
+		const options = {
+			threshold: 0.5, // Pourcentage de visibilité nécessaire pour déclencher l'effet (50% ici)
+		};
+		// Créez une instance de l'observateur d'intersection
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					// L'élément est visible à l'écran, augmentez l'opacité avec une transition
+					entry.target.style.opacity = 1;
+					entry.target.style.transition = '  ease-out 1s'; // Ajout de la transition
+					entry.target.style.transform = 'scale(1)';
+					entry.target.style.transform = 'translateX(0px)';
+
+					// Arrêtez d'observer cet élément une fois que l'opacité a été ajustée
+					// observer.unobserve(entry.target);
+				} else {
+					// L'élément n'est plus visible à l'écran, réinitialisez les styles
+					entry.target.style.opacity = 0;
+					entry.target.style.transition = 'ease-out 0.8s'; // Supprimez la transition
+					entry.target.style.transform = 'scale(0.8)';
+					// entry.target.style.transform = 'translateX(200px)';
+					entry.target.style.transform = 'translateX(20%)';
+				}
+			});
+		}, options);
+		// Parcourez toutes les références d'images et observez-les
+		imageRefs.current.forEach((imageRef) => {
+			observer.observe(imageRef);
+		});
+
+		// N'oubliez pas de nettoyer l'observateur lorsque le composant est démonté
+		return () => {
+			observer.disconnect();
+		};
+	}, []);
+
+	const imageRefs2 = useRef([]);
+
+	useEffect(() => {
+		const options = {
+			threshold: 0.5, // Pourcentage de visibilité nécessaire pour déclencher l'effet (50% ici)
+		};
+		// Créez une instance de l'observateur d'intersection
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					// L'élément est visible à l'écran, augmentez l'opacité avec une transition
+					entry.target.style.opacity = 1;
+					entry.target.style.transition = '  ease-out 1s'; // Ajout de la transition
+					entry.target.style.transform = 'scale(1)';
+					entry.target.style.transform = 'translateX(0px)';
+
+					// Arrêtez d'observer cet élément une fois que l'opacité a été ajustée
+					// observer.unobserve(entry.target);
+				} else {
+					// L'élément n'est plus visible à l'écran, réinitialisez les styles
+					entry.target.style.opacity = 0;
+					entry.target.style.transition = 'ease-out 0.8s'; // Supprimez la transition
+					entry.target.style.transform = 'scale(0.8)';
+					// entry.target.style.transform = 'translateX(-200px)';
+					entry.target.style.transform = 'translateX(-20%)';
+				}
+			});
+		}, options);
+		// Parcourez toutes les références d'images et observez-les
+		imageRefs2.current.forEach((imageRef) => {
+			observer.observe(imageRef);
+		});
+
+		// N'oubliez pas de nettoyer l'observateur lorsque le composant est démonté
+		return () => {
+			observer.disconnect();
+		};
+	}, []);
+
 	return (
 		<div className={styles.contenu}>
 			<div className={styles.container}>
 				{transitions((props, index) => (
-					<animated.div className={styles.photo} style={props}>
+					<animated.div
+						ref={(el) => {
+							imageRefs2.current[0] = el;
+						}}
+						className={styles.photo}
+						style={props}>
 						{tabImgUtils[currentImage].image && (
 							<Image
 								src={tabImgUtils[currentImage].image}
@@ -82,7 +165,11 @@ const Appros = () => {
 					</animated.div>
 				))}
 
-				<div className={styles.appropos}>
+				<div
+					ref={(el) => {
+						imageRefs.current[1] = el;
+					}}
+					className={styles.appropos}>
 					<div className={styles.section1}>
 						<h2>A propos de moi</h2>
 						<p>

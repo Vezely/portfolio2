@@ -96,7 +96,7 @@ export default function Header() {
 	}, [token]);
 
 	return (
-		<header className={styles.header}>
+		<header className={styles.header1}>
 			<div className={styles.container}>
 				<div className={styles.progressContainer}>
 					<div className={styles.progressBar} style={{ width: `${scrollPercentage}%` }}></div>
@@ -104,7 +104,7 @@ export default function Header() {
 
 				<div className={`${styles.containerTop} ${isScrolling ? styles.active : ''} animate__animated animate__slideInDown`}>
 					<div className={styles.contenu}>
-						<div className={styles.logo}>
+						<div onClick={toggleMenuDesable} className={styles.logo}>
 							<Link href='/'>vezely</Link>
 						</div>
 						<div className={styles.menu}>
@@ -121,10 +121,10 @@ export default function Header() {
 									<li onClick={toggleMenuDesable} className={`${styles.li} animate__animated animate__fadeInDown`}>
 										<Link href='/blogs'>Blogs</Link>
 									</li>
-									<li className={`${styles.li} animate__animated animate__fadeInDown`}>
+									<li onClick={toggleMenuDesable} className={`${styles.li} animate__animated animate__fadeInDown`}>
 										<Link href='/blogs/publier'> Publier</Link>
 									</li>
-									<li className={`${styles.li} animate__animated animate__fadeInDown`}>
+									<li onClick={toggleMenuDesable} className={`${styles.li} animate__animated animate__fadeInDown`}>
 										<Link href='/connexion'>Connexion</Link>
 									</li>
 									<li className={`${styles.li} ${styles.profilHover} animate__animated animate__fadeInDown`}>
@@ -135,7 +135,7 @@ export default function Header() {
 											</g>
 										</svg>
 									</li>
-									<li className={styles.profil}>
+									<li onClick={toggleMenuDesable} className={styles.profil}>
 										{user?.prenom && (
 											<div className='animate__animated animate__fadeIn'>
 												<span></span>
@@ -143,7 +143,7 @@ export default function Header() {
 											</div>
 										)}
 
-										<Link href='/creer-un-compte' className='animate__animated animate__fadeIn'>
+										<Link onClick={toggleMenuDesable} href='/creer-un-compte' className='animate__animated animate__fadeIn'>
 											Créer un compte
 										</Link>
 										<div onClick={checkAuthorization} className='animate__animated animate__fadeIn'>

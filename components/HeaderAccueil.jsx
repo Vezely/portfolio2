@@ -5,9 +5,9 @@ import React, { useEffect, useState } from 'react';
 
 export default function HeaderAccueil() {
 	const images = [
-		{ src: '/images/3.png', wedth: 1008, height: 1260 }, // facher
-		{ src: '/images/2.png', wedth: 1008, height: 1260 }, // content
-		{ src: '/images/1.png', wedth: 897, height: 1121 }, // normale
+		{ src: '/images/3.jpg', wedth: 512, height: 512 }, // facher
+		{ src: '/images/2.jpg', wedth: 512, height: 512 }, // content
+		{ src: '/images/1.jpg', wedth: 512, height: 512 }, // normale
 	];
 	const [isScrolling, setIsScrolling] = useState(false);
 	const [currentIndex, setCurrentIndex] = useState(2);
@@ -32,9 +32,14 @@ export default function HeaderAccueil() {
 			<div className={styles.contenuHeader}>
 				<div className={styles.description}>
 					<div className={`${styles.titre} animate__animated animate__flash`}>Développeur Web expérimenté</div>
-					<h1 className='animate__animated animate__fadeIn'>Bonjour, je suis Développeur Full Stack spécialisé en UX/UI.</h1>
+					<h1 className='animate__animated animate__fadeIn'>
+						Bonjour, je suis Développeur Full Stack spécialisé{' '}
+						<div>
+							en <span> UX/UI.</span>
+						</div>
+					</h1>
 					<p className={`${styles.mission} animate__animated animate__backInLeft`}>
-						Ma mission est de concevoir et de développer un site web que vous et votre public aimez.
+						Ma mission est de concevoir et développer des sites web que vous et votre public adorez.
 					</p>
 					<div className={`${styles.contact} animate__animated animate__bounceInUp`}>
 						<Link
